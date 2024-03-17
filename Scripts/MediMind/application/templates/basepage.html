@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'basepage.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<header>
+    
+<nav>
+    <div class="logo">       
+        <img src="{% static 'img/medimind_logo.png' %}" alt="MediMind Logo">
+    </div>
+    <div class="menu">
+        <a href="{% url 'homepage' %}">Home</a>
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Our Doctor</a>
+        <a href="#">Appointment</a>
+        <a href="#">Contact</a>
+        {% if user.is_authenticated %}
+            <a href="#" class="login-link">Profile</a> 
+        {% else %}
+            <a href="{% url 'login' %}" class="login-link">LogIN</a> 
+        {% endif %}
+    </div>
+</nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</header>
+</body>
+</html>

@@ -9,15 +9,23 @@
 body,
 input {
   font-family: "Poppins", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.15)),
+    url("img/homepagebackground.png");
 }
 
 .container {
-  position: relative;
-  width: 100%;
-  background-color: #acdef7;
-  min-height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  background-color: rgba(84, 94, 107, 0.957);
+  height: 700px;
   overflow: hidden;
 }
+
 
 .forms-container {
   position: absolute;
@@ -31,8 +39,8 @@ input {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  left: 75%;
-  width: 50%;
+  left: 70%;
+  width: 60%;
   transition: 1s 0.7s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
@@ -62,16 +70,15 @@ form.sign-in-form {
 
 .title {
   font-size: 2.2rem;
-  color: #222651;
-  margin-bottom: 10px;
+  color: rgba(22, 57, 70, 0.881);
+  margin-bottom: 9px;
 }
 
 .input-field {
-  max-width: 380px;
-  width: 100%;
-  background-color: #62b2c6;
+  width: 300px;
+  background-color: rgba(22, 57, 70, 0.881);
   margin: 10px 0;
-  height: 55px;
+  height: 50px;
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
@@ -80,9 +87,9 @@ form.sign-in-form {
 }
 
 .input-field i {
-  text-align: center;
-  line-height: 55px;
-  color: #0f0548;
+  text-align: center; 
+  line-height: 50px;
+  color: white;
   transition: 0.5s;
   font-size: 1.1rem;
 }
@@ -91,37 +98,36 @@ form.sign-in-form {
   background: none;
   outline: none;
   border: none;
-  line-height: 1;
+  height: 52px;
+  line-height: 55px;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #021054;
+  color: #7acfd9;
 }
 
 .input-field input::placeholder {
-  color: #21015e;
+  color: white;
   font-weight: 500;
 }
 
 .btn {
   width: 150px;
-  background-color: #00ca9e;
-  border: 1px;
+  border: 3px;
   outline: none;
   height: 40px;
   border-radius: 49px;
-  color: #2d2363;
+  color: white;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
 }
-
 .btn:hover {
-  background-color: #799bff;
-  ;
+  color: rgba(22, 57, 70, 0.881);
 }
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -136,25 +142,27 @@ form.sign-in-form {
 .container:before {
   content: "";
   position: absolute;
-  height: 1700px;
+  height: 1500px;
   width: 1700px;
-  top: -40%;
-  right: 40%;
-  transform: translateY(40%);
-  background-image: radial-gradient(circle, #a4cbf0 45%, #4ba5d2 65%);
+  top: -30%;
+  right: 30%;
+  transform: translateY(30%);
+  background-image: radial-gradient(circle, rgba(144, 178, 190, 0.881) 40%, rgba(29, 73, 90, 0.881) 60%);
   transition: 2s ease-in-out;
   border-radius: 50%;
   z-index: 6;
 }
 
 .image {
-  width: 100%;
+  width: 380px;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
+  margin-right: -100px;
+  margin-bottom: -70px;
 }
 
 .panel {
-  display: flex;
+  display:flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-around;
@@ -165,52 +173,56 @@ form.sign-in-form {
 .left-panel {
   pointer-events: all;
   padding: 3rem 17% 2rem 12%;
+  margin-top: -80px;
 }
 
 .right-panel {
   pointer-events: none;
   padding: 3rem 12% 2rem 17%;
+  margin-top: -80px;
 }
 
 .panel .content {
-  color: #071d3d;
   transition: transform 0.9s ease-in-out;
-  transition-delay: 0.6s;
+  transition-delay: 0.3s;
 }
 
 .panel h3 {
   font-weight: 1200;
-  font-size: 30px;
+  font-size: 40px; 
+  color: rgba(22, 57, 70, 0.881);
+  -webkit-text-stroke: 1px white; /* Black border around the text */
 }
 
 .panel p {
-  font-size: 20px;
+  font-size: 15px;
   padding: 2px;
+  color: white;
 }
 
 @keyframes colorfulBorder {
   0% {
-    border-color: #29036a;
+    border-color: #396f8c;
   }
   25% {
     border-color: #69c469; 
   }
   50% {
-    border-color: #9595db; 
+    border-color: #95dbdb; 
   }
   75% {
-    border-color: #7d027d; 
+    border-color: #c793c7; 
   }
   100% {
-    border-color: #29036a; 
+    border-color: #805dbc; 
   }
   
 }
 
 .btn.transparent {
   margin: 0;
-  background: rgb(175, 238, 178);
-  border: 4px solid #4b0420;
+  background: rgba(3, 71, 96, 0.858);
+  border: 4px solid #e6d2da;
   width: 150px;
   height: 50px;
   font-weight: 600;
@@ -220,14 +232,14 @@ form.sign-in-form {
 
 
 .btn.transparent:hover {
-  background-color: #2b245f; 
-  color: #b6c3f6; 
+  background-color: rgb(203, 230, 231); 
+  color: rgba(22, 57, 70, 0.881); 
 }
 
 
 .right-panel .image,
 .right-panel .content {
-  transform: translateX(800px);
+  transform: translateX(900px);
 }
 
 /* ANIMATION */
