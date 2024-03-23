@@ -1,0 +1,70 @@
+{% extends 'basepage.html' %}
+{%load static%}
+{% block title %}Home{% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">
+<section>
+    <h1>Your Health Is</h1>
+    <h3>Our Priority</h3>
+    <a href="#" class="btnone">Check Your Symptoms <span class="arrow">&#9658;</span></a>
+    <a href="#" class="btntwo">Book an Appointment <span class="arrow">&#9658;</span></a>            
+</section>
+<add>
+    <ul class="banner-buttons">
+        <li>
+            <a href="#">
+                <i class="fas fa-syringe"></i>
+                <div class="button-text">
+                    <h2>Medicine/Vaccine</h2>
+                    <h3>Scan the prescription and<br>find the medicines in a<br>reasonable price</h3>
+                </div>
+            </a>
+        </li>               
+        <li>
+            <a href="#">
+                <i class="fas fa-notes-medical"></i>
+                <div class="button-text">
+                    <h2>Education & Resources</h2>
+                    <h3>Need help in health education<br>and resources? We got the<br>best sources for you</h3>
+                </div>
+            </a>
+        </li>  
+        <li>
+            <a href="#">
+                <i class="fas fa-user-md"></i>
+                <div class="button-text">
+                    <h2>Seminar/Webinar</h2>
+                    <h3>Join the seminar with the<br>top doctor for a better<br>healthy life</h3>
+                </div>
+            </a>
+        </li>
+    </ul>
+</add> 
+
+<div id="loginPopup" class="login-popup" style="display: none;">
+    {% include 'loginpage.html' %}
+</div>
+
+<script>
+    function showLoginPopup() {
+        var isLoggedIn = localStorage.getItem('isLoggedIn');
+        if (!isLoggedIn || isLoggedIn !== 'true') {
+            var loginPopup = document.getElementById('loginPopup');
+            if (loginPopup) {
+                loginPopup.style.display = 'block';
+            }
+        }
+    }
+    window.onload = function() {
+        setTimeout(showLoginPopup, 6000); //after 6s popup
+    };
+
+    function setUserLoggedIn() {
+        localStorage.setItem('isLoggedIn', 'true');
+        var loginPopup = document.getElementById('loginPopup');
+        if (loginPopup) {
+            loginPopup.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}
