@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Form</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'disform.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<form id="diseaseForm" class="form-container">
+    {% csrf_token %}
+    <label for="disease">Select Your Disease:</label>
+    <select name="disease" id="disease">
+        <!-- Options will be loaded dynamically -->
+    </select>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: '{% url "get_disease_options" %}',
+        success: function(response) {
+            var options = response.options;
+            var select = $('#disease');
+            $.each(options, function(index, option) {
+                select.append($('<option>', {
+                    value: option.id,
+                    text: option.name
+                }));
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX error:', error);
+        }
+    });
+
+    $('#diseaseForm').submit(function(event) {
+        event.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/submit-form/', // URL to submit form data
+            data: formData,
+            success: function(response) {
+                if (response.success) {
+                    // Redirect to the next page
+                    window.location.href = response.next_page;
+                } else {
+                    // Handle error response
+                    alert('Form submission failed!');
+                }
+            },
+            error: function(xhr, status, error) {
+                // Handle AJAX error
+                console.error('AJAX error:', error);
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
