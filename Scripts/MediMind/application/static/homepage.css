@@ -1,10 +1,10 @@
 * {
     margin: 0;
-    padding: 0;
+    padding:0;
     box-sizing: border-box;
-    font-family: "Josefin Sans", sans-serif;
+    font-family:poppins;
+    src: url(../font/poppins);
   }
-  
 
   main {
     width: 100%;
@@ -17,12 +17,14 @@
   }
   
   section h1 {
-    font-size: 100px;
-    font-weight: 150;
-    letter-spacing: 4px;
+    font-size: 110px;
+    font-weight: 10px;
+    letter-spacing: 3px;
     text-shadow: 1px 1px 2px black;
-    font-family:Impact;
+    font-family:poppins;
+    src: url(../font/poppins);
     margin-left: 40px;
+    margin-top: -40px;
 }
   
   section h3 {
@@ -30,8 +32,10 @@
     font-size:90px;
     text-transform:uppercase;
     -webkit-text-stroke: 1px white ;
-    font-family:'Arial Narrow';
+    font-family:poppins;
+    src: url(../font/poppins);
     margin-left: 40px;
+    margin-top: -50px;
   }
   
   section a {
@@ -39,12 +43,12 @@
     font-size: 20px;
     transition: all 0.5s ease;
     font-family:Arial;
+    margin-top: 10px;
   }
   
-  section .btnone,
-  .btntwo {
+  section .btnone{
       display: inline-block;
-      padding: 18px 37px;
+      padding: 18px 23px;
       text-decoration:none;
       color: white;
       background-color: rgba(22, 57, 70, 0.881);
@@ -53,11 +57,23 @@
       position: relative;
   }
 
+  section .btntwo{
+      display: inline-block;
+      padding: 18px 40px;
+      text-decoration:none;
+      color: white;
+      background-color: rgba(22, 57, 70, 0.881);
+      border: 3.1px solid white;
+      margin-left: 40px;
+      position: relative;
+  }
+
+
   .arrow {
     display: inline-block;
     background-color: white;
     color: rgba(22, 57, 70, 0.881);
-    padding: 18px 8px; 
+    padding: 14.36px 9px;
     font-size: 21px;
     position: absolute;
     border: 2px solid white;
@@ -91,7 +107,7 @@ add {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  text-align: center; 
+  text-align: center;
 }
 
 .banner-buttons li {
