@@ -11,11 +11,12 @@ body {
 
 form {
     padding: 140px 70px;
-    max-width: 500px;
+    max-width: 700px;
     background-color: rgba(70, 70, 77, 0.65);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
+    height: 700px;
 }
 
 label {
@@ -33,7 +34,7 @@ label {
 select {
     width: 250px;
     padding: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     border: 3px solid rgba(29, 73, 90, 0.881);
     border-radius: 5px;
     box-sizing: border-box;
