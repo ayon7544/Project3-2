@@ -181,7 +181,7 @@ def delete_users(request):
     if request.method == "POST":
         # context = {"data": request.POST}
         username = request.POST.get("username")
-        if username == "Ayon":
+        if username == "All":
             count, _ = User.objects.all().delete()
             messages.add_message(request, messages.SUCCESS,
                                  f"All {count} users have been successfully deleted.")
