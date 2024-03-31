@@ -20,9 +20,11 @@ l1 = ['itching','skin_rash','nodal_skin_eruptions','continuous_sneezing','shiver
                    'receiving_blood_transfusion','receiving_unsterile_injections','coma','stomach_bleeding','distention_of_abdomen','history_of_alcohol_consumption',
                    'fluid_overload','blood_in_sputum','prominent_veins_on_calf','palpitations','painful_walking','pus_filled_pimples','blackheads','scurring','skin_peeling',
                    'silver_like_dusting','small_dents_in_nails','inflammatory_nails','blister','red_sore_around_nose','yellow_crust_ooze']
+
+
 class DiseaseClassifier:
     def __init__(self):
-        self.l1=l1
+        self.l1 = l1
 
         self.disease_mapping = {
             0: 'Fungal infection', 1: 'Allergy', 2: 'GERD', 3: 'Chronic cholestasis', 4: 'Drug Reaction',

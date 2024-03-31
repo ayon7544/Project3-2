@@ -1,0 +1,21 @@
+
+{% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'messages.css' %}">
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="{{ message.tags }}-message">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+{% comment %} {% if messages %}
+    {% for message in messages %}
+    <div class="ui {{message.tags}} message">
+        {{message}}
+    </div> 
+    {% endfor %}
+{% endif %}
+     {% endcomment %}
