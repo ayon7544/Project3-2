@@ -1,0 +1,49 @@
+{% extends 'medi_mind/basepage.html' %}
+{% load static%}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">
+<section>
+    <h1>Your Health is</h1>
+    <h3>OUR PRIYORITY</h3>
+    <a href="#" class="btnone">Book an Appoinment<span class="arrow">&#9658;</span></a>
+    <a href="{% url 'diseaseform' %}" class="btntwo">Detect Disease <span class="arrow">&#9658;</span></a>
+</section>
+<add>
+    <ul class="banner-buttons">
+        <li>
+            <a href="#">
+                <i class="fas fa-syringe"></i>
+                <div class="button-text">
+                    <h2>Medicine/Vaccine</h2>
+                    <h3>Scan the prescription <br>and find the medicines, <br>in a reasonable price.</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-notes-medical"></i>
+                <div class="button-text">
+                    <h2>Education & Resources</h2>
+                    <h3>Need help in health <br> education and resources? We got<br> the best sources for you</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-user-md"></i>
+                <div class="button-text">
+                    <h2>Seminar/Webinar</h2>
+                    <h3>Join the seminar with the<br>top doctor for a better<br>healthy life</h3>
+                </div>
+            </a>
+        </li>
+    </ul>
+</add>
+{% comment %} 
+<div id="loginPopup" class="login-popup" style="display: none;">
+    {% include 'loginpage.html' %}
+</div> 
+{% endcomment %}
+{% endblock %}

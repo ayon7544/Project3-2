@@ -21,13 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e1n+n4y@*13*q%klb6c(jxn3#sqz8-v7_sj%h&ax+9jh5-a982'
+# SECRET_KEY = 'django-insecure-e1n+n4y@*13*q%klb6c(jxn3#sqz8-v7_sj%h&ax+9jh5-a982'
+SECRET_KEY = os.environ.get('SECRET_KEY',)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+AUTH_USER_MODEL = "authentication.User"
+
+LOGIN_URL = "/auth/login"
 
 # Application definition
 
@@ -38,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'application'
+    "authentication",
+    'application',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +61,7 @@ ROOT_URLCONF = 'MediMind.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Medi', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,6 +118,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Email config
+EMAIL_FROM_USER = os.environ.get('EMAIL_FROM_USER')
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = os.environ.get('EMAIL_FROM_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

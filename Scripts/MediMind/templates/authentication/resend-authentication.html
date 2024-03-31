@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" ></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+  {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> {% endcomment %}
+  <style>
+    .close-button {
+        position: absolute;
+        top: 25px;
+        right: 0;
+        color:aliceblue; 
+        background-color:black;
+        transform: translateX(-50%);
+        padding: 10px 20px; 
+        font-size: 18px; 
+        border: none;
+        cursor: pointer;
+      }
+      .close-button:hover {
+        background-color:#7acfd9; 
+        color:aliceblue;  
+        cursor: pointer;
+      }
+  
+      
+      @media(min-width:871px){
+        .left-pannel-overwrite{
+          margin-top: 0;
+        }
+        .image{
+          margin-right: -70px;
+          width: 320px;
+        }
+      }
+  </style>
+  <title>Request authentication</title>
+</head>
+<body>
+  <div class="container"> 
+    {% comment %} {% include '_partials/messages.html' %} {% endcomment %}
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form class="sign-in-form" method="post" action="{% url 'resend_authentication' %}">
+          {% csrf_token %}
+          <h2 class="title">Request authentication</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" name="username" placeholder="username"  value="{{data.username}}">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="text" name="email" value="{{data.email}}" placeholder="email">
+          </div>
+          <input type="submit" class="btn transparent" value="request"  />
+        </form>
+      </div>
+    </div>
+    <div class="panels-container" style="font-size:medium;">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>Legends</h3>
+          
+            {% include '_partials/messages.html' %}
+          
+          <button class="btn solid">
+            Report
+          </button>
+        </div>
+        <img src="{% static 'img/XOsa.gif' %}" class="image" alt="" />
+        <button id="closeBtn" class="btn close-button" onclick="goToHomePage()">close</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function goToHomePage() {
+      window.location.href = "/";
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      function showLoginPopup() {
+        document.getElementById("loginPopup").style.display = "block";
+      }
+      function hideLoginPopup() {
+        document.getElementById("loginPopup").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

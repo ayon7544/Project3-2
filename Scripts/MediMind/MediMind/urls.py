@@ -18,6 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('application.urls')),
     path('admin/', admin.site.urls),
+    path('', include('application.urls')),
+    path("auth/", include("authentication.urls")),
 ]
+
+
+handler404 = "helpers.views.handle_not_found"
+handler500 = "helpers.views.handle_server_error"

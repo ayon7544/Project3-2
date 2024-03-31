@@ -1,0 +1,42 @@
+/* styles.css */
+.error-message {
+    /* background-color: #ffe6e6; */
+    color: #ff0000;
+    /* border: 1px solid #ff0000; */
+    /* padding: 10px; */
+    /* margin-bottom: 10px; */
+}
+
+.success-message {
+    /* background-color: #e6ffe6; */
+    color: #008000;
+    /* border: 1px solid #008000; */
+    /* padding: 10px; */
+    /* margin-bottom: 10px; */
+
+}
+
+.alert-message {
+    /* background-color: #fff2cc; */
+    /* color: #d6a700; */
+    /* border: 1px solid #d6a700; */
+    /* padding: 10px; */
+    /* margin-bottom: 10px; */
+}
+
+.info-message {
+    /* background-color: #e5f3ff; */
+    color: #0066cc;
+    /* border: 1px solid #0066cc; */
+    /* padding: 10px; */
+    /* margin-bottom: 10px; */
+}
+
+/* styles.css */
+.warning-message {
+    /* background-color: #fff3cd; */
+    color: #ff8800;
+    /* border: 1px solid #856404; */
+    /* padding: 10px; */
+    /* margin-bottom: 10px; */
+}
