@@ -71,9 +71,11 @@
             Wrong parameter, you suck bro!
           </p>
         </div>
-        <img src="{% static 'img/1uHg.gif' %}" class="image" alt="" />
+        <img src="{% static 'img/1uHg.gif' %}" class="image" alt="" />close
         <button id="closeBtn" class="btn close-button" onclick="goToHomePage()">close</button>
-        <i class="fa-solid fa-x"></i>
+        {% comment %} <button class="btn close-button" ></button> {% endcomment %}
+        {% comment %} <a class="btn close-button" href="{% url 'mail_template_viewer' %}" style="right: 150px; height: 20; width: 100;">Template</a> {% endcomment %}
+        
       </div>
     </div>
   </div>
