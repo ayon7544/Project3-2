@@ -1,8 +1,14 @@
 import threading
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from validate_email import validate_email
+
+# #** For some reason this is not working for me!!
+# from validate_email import validate_email
+# #** This email_validator is to resolve previous validator.
+from email_validator import validate_email
+# #** You can use any one from these two validator
+
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
@@ -10,7 +16,7 @@ from helpers.decorators import auth_user_should_not_access
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
+from django.utils.encoding import force_bytes, force_str
 from .utils import generate_token
 from django.core.mail import EmailMessage
 from django.conf import settings
@@ -78,9 +84,8 @@ def register(request):
                                  "Password mismatch!")
             context['has_error'] = True
         if context['has_error']:
-            messages.add_message(request, messages.WARNING,
-                                 "Please provide a valid information!")
-            # return redirect(reverse, "register", context)
+            # messages.add_message(request, messages.WARNING,
+            #                      "Please provide a valid information!")
             return render(request, "authentication/loginpage.html", context)
         user = User.objects.create_user(username=username, email=email)
         user.set_password(password)
@@ -115,7 +120,33 @@ def resend_authentication(request):
                                  "Please provide a valid information!")
             return render(request, "authentication/resend-authentication.html",
                           context)
-        user = User.objects.get(username=username, email=email)
+        try:
+            user = User.objects.get(username=username)
+            if not user.email == email:
+                messages.add_message(request, messages.ERROR,
+                                     "Wrong username or email!")
+                return render(request,
+                              "authentication/resend-authentication.html",
+                              context)
+        except User.DoesNotExist:
+            user = None
+        if user is None:
+            try:
+                user = User.objects.get(email=email)
+                if not user.username == username:
+                    messages.add_message(request, messages.ERROR,
+                                         "Wrong username or email!")
+                    return render(request,
+                                  "authentication/resend-authentication.html",
+                                  context)
+            except User.DoesNotExist:
+                user = None
+        if user is None:
+            messages.add_message(request, messages.ERROR,
+                                 "Wrong username or email!")
+            return render(request, "authentication/resend-authentication.html",
+                          context)
+        # user = User.objects.get(username=username, email=email)
         if user.is_email_verified:
             messages.add_message(request, messages.INFO,
                                  "Email is already verified! Try to login.")
@@ -137,11 +168,11 @@ def login_user(request):
         if user is not None:
             if not user.is_email_verified:
                 messages.add_message(request, messages.WARNING,
-                                     "User email is not verified yet!")
-                messages.add_message(request, messages.INFO,
-                                     "Please provide your username and email to confirm mail verification.")
-                # return render(request, "authentication/resend-authentication.html")
-                return render(request, "authentication/resend-authentication.html")
+                                     "User is not authenticated!")
+                # messages.add_message(request, messages.INFO,
+                # "Fill the form to confirm mail verification.")
+                return render(request,
+                              "authentication/resend-authentication.html")
             login(request, user)
             messages.add_message(request, messages.SUCCESS,
                                  f"Welcome {user.username}")
@@ -165,7 +196,8 @@ def activate_user(request, uidb64, token):
         # uid = force_text(urlsafe_base64_decode(uidb64))
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-    except Exception as e:
+    # except Exception as e:
+    except User.DoesNotExist:
         user = None
     if user and generate_token.check_token(user, token):
         user.is_email_verified = True
