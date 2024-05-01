@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seminar</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'seminar.css' %}">
+</head>
+<body>
+    <form action="https://api.web3forms.com/submit" method="POST">
+        <div class="top">
+            <h1 class="title">Seminar / Webinar</h1>
+        </div>
+        <div class="banner">
+            <h1>OOPS!</h1>
+            <h2>No Seminars Available</h2>
+            <p>Want to get notification when a <br> Seminar is being held?<br> Then click down</p>
+        </div>
+
+        <input type="hidden" name="access_key" value="3bb0346c-53b6-45ba-ae7c-e526f6f463d8">
+        <input type="radio" id="notify" name="notification" value="notification">
+        <label for="notify">Notify Me</label>
+        
+        <input type="hidden" name="redirect" value="https://web3forms.com/success">
+        <button type="submit">confirm</button>
+    
+    </form>
+</body>
+</html>

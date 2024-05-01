@@ -1,0 +1,88 @@
+body {
+    font-family: 'poppins',sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("img/homepagebackground.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .top {
+    text-align: center;
+    margin-top:-50px; 
+  }
+  
+  .title {
+    font-size: 80px;
+    color: white;
+    margin: 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ffffff; 
+  }
+  
+  .banner {
+    text-align: center;
+  }
+  
+  .banner h1 {
+    color: white;
+    font-size: 70px;
+    margin-top: 70px;
+ 
+  }
+  .banner h2 {
+    color: white;
+    font-size: 50px;
+
+  }
+  
+  .banner p {
+    color: white;
+    font-size: 40px;
+ 
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
+  }
+  
+  input[type="hidden"] {
+    display: none;
+
+  }
+
+  input[type="radio"] {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  label {
+    cursor: pointer;
+    color: rgba(22, 57, 70, 0.881);
+    font-size: 20px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px 6px;
+  }
+  
+  button[type="submit"] {
+    margin-top: 20px;
+    font-size: 30px;
+    color:white;
+    background-color:rgba(45, 167, 191, 0.221);
+    cursor: pointer;
+    padding: 2px 9px;
+  }
+  
+  button[type="submit"]:hover {
+    color: rgba(22, 57, 70, 0.881);
+  }
+  

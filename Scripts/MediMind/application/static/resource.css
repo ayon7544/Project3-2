@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("img/homepagebackground.png");
+    background-size: cover;
+    background-position: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 40px;
+    background-color: rgba(22, 57, 70, 0.881);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}

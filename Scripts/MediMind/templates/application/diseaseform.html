@@ -7,42 +7,22 @@
     <title>Disease Form</title>
     <link rel="stylesheet" type="text/css" href="{% static 'disform.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'disease.js' %}"></script>
 </head>
 <body>
 
 <form id="diseaseForm" class="form-container" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="disease">Select Your Disease:</label>
-    <select name="disease1" id="disease1">
-        <option value="">Select a symptom</option>
+
+    <select name="disease1" id="disease1" multiple multiselect-search ="true"
+    multiselact-select-all="true" multiselect-max-items="6">
+        
         {% for symptom in symptoms %}
           <option value="{{ symptom.name }}">{{ symptom.name }}</option>
         {% endfor %}
     </select>
-    <select name="disease2" id="disease2">
-        <option value="">Select a symptom</option>
-        {% for symptom in symptoms %}
-          <option value="{{ symptom.name }}">{{ symptom.name }}</option>
-        {% endfor %}
-    </select>
-    <select name="disease3" id="disease3">
-        <option value="">Select a symptom</option>
-        {% for symptom in symptoms %}
-          <option value="{{ symptom.name }}">{{ symptom.name }}</option>
-        {% endfor %}
-    </select>
-    <select name="disease4" id="disease4">
-        <option value="">Select a symptom</option>
-        {% for symptom in symptoms %}
-          <option value="{{ symptom.name }}">{{ symptom.name }}</option>
-        {% endfor %}
-    </select>
-    <select name="disease5" id="disease5">
-        <option value="">Select a symptom</option>
-        {% for symptom in symptoms %}
-          <option value="{{ symptom.name }}">{{ symptom.name }}</option>
-        {% endfor %}
-    </select>
+    
     <button type="submit" name="save" value="confirm">Submit</button>
 </form>
 <!-- Bootstrap CSS -->

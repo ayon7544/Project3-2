@@ -32,3 +32,18 @@ def diseaseform(request):
 def predictedDisease(request, disease):
     return render(request, 'application/predictedDisease.html',
                   {'disease': disease})
+
+@login_required  
+def appointmentform(request):
+    return render(request, 'medi_mind/Appointmentform.html')
+
+def payment(request):
+    return render(request, 'medi_mind/payment.html')
+
+@login_required  
+def resource(request):
+    return render(request, 'medi_mind/resource.html')
+
+@login_required  
+def seminar(request):
+    return render(request, 'medi_mind/seminar.html')
