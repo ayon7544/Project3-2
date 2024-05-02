@@ -14,13 +14,9 @@ def homepage(request):
 def diseaseform(request):
     if request.method == 'POST':
         Disease1 = request.POST.get('disease1')
-        Disease2 = request.POST.get('disease2')
-        Disease3 = request.POST.get('disease3')
-        Disease4 = request.POST.get('disease4')
-        Disease5 = request.POST.get('disease5')
         loaded_model = DiseaseClassifier.DiseaseClassifier.load_model(
             "disease_model.sav")
-        symptom = [Disease1, Disease2, Disease3, Disease4, Disease5]
+        symptom = [Disease1]
         input_test = loaded_model.symptoms(symptom)
         predicted = loaded_model.gnb.predict(input_test)
         disease = loaded_model.get_disease(predicted)
@@ -32,12 +28,16 @@ def diseaseform(request):
 
 @login_required
 def predictedDisease(request, disease):
+    details = Disease.objects.get(name=disease)
     return render(request, 'application/predictedDisease.html',
-                  {'disease': disease})
+                  {'disease': disease,'description':details.description,'avoid':details.avoid_foods_and_drinks,'examination_preparation':details.examination_preparation})
 
 @login_required  
 def appointmentform(request):
-    return render(request, 'medi_mind/Appointmentform.html')
+    if request.method == "POST":
+        return redirect(Thankyou)
+    Appointments=Appointment.objects.all()
+    return render(request, 'medi_mind/Appointmentform.html',{'Appointments':Appointments})
 
 def payment(request):
     return render(request, 'medi_mind/payment.html')
@@ -76,3 +76,5 @@ def payment(request):
     return render(request, 'pharmacy/payment.html')
 def Thankyou(request):
     return render(request, 'pharmacy/Thankyou.html')
+
+

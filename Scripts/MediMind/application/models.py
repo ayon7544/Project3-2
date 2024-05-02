@@ -52,4 +52,15 @@ class Book(models.Model):
 
     def __str__(self):
         return self.email
+    
+
+class Appointment(models.Model):
+    doctor_name = models.CharField(max_length=100)
+    appointment_mood = models.CharField(max_length=100)
+    appointment_time = models.DateTimeField()
+    appointment_length = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.doctor_name} - {self.appointment_time}"
+
 

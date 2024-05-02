@@ -9,9 +9,11 @@
   <div class="container">
     <h1>Probable Diagnosis: {{ disease }}</h1>
     <h2>Description:</h2> 
-    <p>text describing symptoms</P>
+    <p>{{description}}</P>
     <h2>Avoid Food and Drink</h2> 
-    <p>text describing symptoms</P>
+    <p>{{avoid}}</P>
+    <h2>Examination Preparation</h2> 
+    <p>{{examination_preparation}}</P>
     <button class="medical-button"> >>Seek Medical Attention Immediately ></button>
     <a href="{% url 'appointmentform' %}" class="button">Book Appointment</a>
   </div>
