@@ -4,267 +4,258 @@ import django
 # Configure Django settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MediMind.settings')
 django.setup()
+from datetime import datetime, timedelta
+from application.models import Appointment
 
-# Import the Disease model
-from application.models import Disease
-
-# Define the data for diseases
-diseases_data = [
+# Define the appointment data
+appointments_data = [
     {
-        'name': 'Fungal infection',
-        'description': 'Fungal infection is a common condition caused by various types of fungi.',
-        'avoid_foods_and_drinks': 'Avoid sugary foods and drinks as they can promote fungal growth.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. A sample may be taken for examination.'
+        'doctor_name': 'Dr. Smith',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=1),  # Example: 1 day from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Allergy',
-        'description': 'Allergy is an overreaction of the immune system to substances that are usually harmless.',
-        'avoid_foods_and_drinks': 'Avoid foods that trigger allergic reactions. Consult with a healthcare provider for specific advice.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Allergy tests may be performed as advised by a doctor.'
+        'doctor_name': 'Dr. Johnson',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=5),  # Example: 5 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'GERD (Gastroesophageal Reflux Disease)',
-        'description': 'GERD is a digestive disorder that affects the lower esophageal sphincter (LES), the ring of muscle between the esophagus and stomach.',
-        'avoid_foods_and_drinks': 'Avoid acidic, spicy, and fatty foods. Limit caffeine and alcohol intake.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Endoscopy or other tests may be performed as advised by a doctor.'
+        'doctor_name': 'Dr. Martinez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=9),  # Example: 9 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Chronic cholestasis',
-        'description': 'Chronic cholestasis is a condition where bile flow from the liver slows or stops, causing a buildup of bile in the liver.',
-        'avoid_foods_and_drinks': 'Avoid fatty and fried foods. Limit alcohol intake.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Liver function tests or imaging studies may be performed.'
+        'doctor_name': 'Dr. Lee',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=13),  # Example: 13 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Drug Reaction',
-        'description': 'Drug reaction, also known as adverse drug reaction (ADR), is an unintended harmful reaction to a medication.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but it is important to avoid the triggering medication.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Medical history and symptoms are evaluated.'
+        'doctor_name': 'Dr. Hernandez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=17),  # Example: 17 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Peptic ulcer disease',
-        'description': 'Peptic ulcer disease is a condition where painful sores or ulcers develop on the inner lining of the stomach or the upper part of the small intestine.',
-        'avoid_foods_and_drinks': 'Avoid spicy foods, alcohol, and caffeine. Limit intake of acidic foods.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Endoscopy or other tests may be performed.'
+        'doctor_name': 'Dr. Wang',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=21),  # Example: 21 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'AIDS',
-        'description': 'AIDS (Acquired Immunodeficiency Syndrome) is a chronic, potentially life-threatening condition caused by the human immunodeficiency virus (HIV).',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but a balanced diet is important for overall health.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. HIV tests may be performed.'
+        'doctor_name': 'Dr. Nguyen',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=25),  # Example: 25 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Diabetes',
-        'description': 'Diabetes is a chronic condition characterized by high levels of sugar (glucose) in the blood.',
-        'avoid_foods_and_drinks': 'Avoid sugary foods and drinks. Limit carbohydrate intake.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests may be performed to measure glucose levels.'
+        'doctor_name': 'Dr. Garcia',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=29),  # Example: 29 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Gastroenteritis',
-        'description': 'Gastroenteritis is inflammation of the stomach and intestines, typically resulting from bacterial or viral infection.',
-        'avoid_foods_and_drinks': 'Avoid dairy products, fatty foods, spicy foods, and caffeine. Drink plenty of fluids.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Medical history and symptoms are evaluated.'
+        'doctor_name': 'Dr. Gonzalez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=33),  # Example: 33 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Bronchial Asthma',
-        'description': 'Bronchial asthma is a chronic condition characterized by inflammation and narrowing of the airways, causing difficulty breathing.',
-        'avoid_foods_and_drinks': 'Avoid foods that trigger asthma symptoms, such as sulfites, preservatives, and certain food additives.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Lung function tests may be performed.'
+        'doctor_name': 'Dr. Martinez',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=37),  # Example: 37 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Hypertension',
-        'description': 'Hypertension, or high blood pressure, is a common condition where the force of blood against the artery walls is consistently too high.',
-        'avoid_foods_and_drinks': 'Limit salt intake. Avoid high-sodium foods, processed foods, and alcohol.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood pressure measurements are taken.'
+        'doctor_name': 'Dr. Johnson',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=41),  # Example: 41 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Migraine',
-        'description': 'Migraine is a neurological condition characterized by recurrent, severe headaches often accompanied by other symptoms such as nausea, vomiting, and sensitivity to light and sound.',
-        'avoid_foods_and_drinks': 'Avoid trigger foods such as aged cheese, chocolate, and caffeine. Stay hydrated.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Medical history and symptoms are evaluated.'
+        'doctor_name': 'Dr. Lee',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=45),  # Example: 45 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Cervical spondylosis',
-        'description': 'Cervical spondylosis is a common age-related condition that affects the joints and discs in the cervical spine (neck).',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but maintaining a healthy weight can help reduce symptoms.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Imaging tests such as X-rays or MRI may be performed.'
+        'doctor_name': 'Dr. Patel',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=49),  # Example: 49 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Paralysis (brain hemorrhage)',
-        'description': 'Paralysis due to brain hemorrhage occurs when bleeding in the brain damages brain tissue and disrupts signals between the brain and muscles.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but a balanced diet is important for overall health.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Medical history, imaging tests, and neurological examinations are performed.'
+        'doctor_name': 'Dr. Wang',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=53),  # Example: 53 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Jaundice',
-        'description': 'Jaundice is a condition where the skin and whites of the eyes become yellow due to high levels of bilirubin in the blood.',
-        'avoid_foods_and_drinks': 'Avoid fatty and fried foods. Drink plenty of fluids to stay hydrated.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests and imaging studies may be performed.'
+        'doctor_name': 'Dr. Nguyen',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=57),  # Example: 57 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Malaria',
-        'description': 'Malaria is a serious and sometimes fatal disease caused by Plasmodium parasites that are transmitted through the bite of infected female Anopheles mosquitoes.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but staying hydrated is important.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect the presence of the malaria parasite.'
+        'doctor_name': 'Dr. Hernandez',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=61),  # Example: 61 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Chicken pox',
-        'description': 'Chickenpox is a highly contagious viral infection characterized by an itchy rash and red spots or blisters all over the body.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but staying hydrated and eating nutritious foods can help support recovery.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Chickenpox is typically diagnosed based on symptoms and clinical examination.'
+        'doctor_name': 'Dr. Garcia',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=65),  # Example: 65 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Dengue',
-        'description': 'Dengue fever is a mosquito-borne viral infection characterized by flu-like symptoms and, in severe cases, potentially life-threatening complications such as dengue hemorrhagic fever and dengue shock syndrome.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but staying hydrated is important.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect the dengue virus.'
+        'doctor_name': 'Dr. Martinez',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=69),  # Example: 69 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Typhoid',
-        'description': 'Typhoid fever is a bacterial infection caused by Salmonella typhi bacteria, typically transmitted through contaminated food and water.',
-        'avoid_foods_and_drinks': 'Avoid raw or undercooked foods, as well as foods and drinks from questionable sources. Drink only safe, bottled or boiled water.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood, stool, or urine tests may be performed to detect the bacteria.'
+        'doctor_name': 'Dr. Johnson',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=72),  # Example: 72 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Hepatitis A',
-        'description': 'Hepatitis A is a highly contagious liver infection caused by the hepatitis A virus (HAV), typically transmitted through contaminated food or water or close contact with an infected person.',
-        'avoid_foods_and_drinks': 'Avoid raw or undercooked shellfish, as well as foods and drinks from questionable sources. Drink only safe, bottled or boiled water.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect antibodies to the hepatitis A virus.'
+        'doctor_name': 'Dr. Lee',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=76),  # Example: 76 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Hepatitis B',
-        'description': 'Hepatitis B is a viral infection that attacks the liver and can cause both acute and chronic disease. It is transmitted through contact with the blood or other body fluids of an infected person.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but a balanced diet is important for overall health.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect hepatitis B virus antigens and antibodies.'
+        'doctor_name': 'Dr. Hernandez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=79),  # Example: 79 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Hepatitis C',
-        'description': 'Hepatitis C is a viral infection that causes liver inflammation, sometimes leading to serious liver damage. The hepatitis C virus (HCV) is transmitted through contact with infected blood.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but a balanced diet is important for overall health.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect hepatitis C virus antibodies.'
+        'doctor_name': 'Dr. Wang',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=82),  # Example: 82 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Hepatitis D',
-        'description': 'Hepatitis D, also known as delta hepatitis, is a liver infection caused by the hepatitis D virus (HDV), which is transmitted through contact with infected blood.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but a balanced diet is important for overall health.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect hepatitis D virus antibodies.'
+        'doctor_name': 'Dr. Nguyen',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=86),  # Example: 86 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Hepatitis E',
-        'description': 'Hepatitis E is a liver disease caused by the hepatitis E virus (HEV), which is transmitted mainly through contaminated water.',
-        'avoid_foods_and_drinks': 'Avoid raw or undercooked shellfish, as well as foods and drinks from questionable sources. Drink only safe, bottled or boiled water.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests are performed to detect hepatitis E virus antibodies.'
+        'doctor_name': 'Dr. Garcia',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=90),  # Example: 90 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Alcoholic hepatitis',
-        'description': 'Alcoholic hepatitis is liver inflammation caused by drinking too much alcohol over time. It is a serious condition that can lead to liver damage and liver failure.',
-        'avoid_foods_and_drinks': 'Avoid alcohol completely. Follow a healthy diet low in saturated fats and refined sugars.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests, imaging studies, or liver biopsy may be performed.'
+        'doctor_name': 'Dr. Gonzalez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=94),  # Example: 94 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Tuberculosis',
-        'description': 'Tuberculosis (TB) is a potentially serious infectious disease caused by the bacterium Mycobacterium tuberculosis. It primarily affects the lungs but can also affect other parts of the body.',
-        'avoid_foods_and_drinks': 'Eat a healthy, balanced diet to support overall health and immunity.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Tests such as a TB skin test, blood test, or imaging studies may be performed.'
+        'doctor_name': 'Dr. Martinez',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=98),  # Example: 98 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Common Cold',
-        'description': 'The common cold is a viral infection of the upper respiratory tract, causing symptoms such as coughing, sneezing, sore throat, and runny or stuffy nose.',
-        'avoid_foods_and_drinks': 'Stay hydrated with water, herbal teas, and clear broths. Avoid alcohol and caffeinated drinks.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Symptoms are evaluated clinically.'
+        'doctor_name': 'Dr. Johnson',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=102),  # Example: 102 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Pneumonia',
-        'description': 'Pneumonia is an infection that inflames the air sacs in one or both lungs, causing cough, fever, chills, and difficulty breathing.',
-        'avoid_foods_and_drinks': 'Stay hydrated with water, herbal teas, and clear broths. Avoid alcohol and caffeinated drinks.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Chest X-ray, blood tests, or sputum tests may be performed.'
+        'doctor_name': 'Dr. Lee',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=106),  # Example: 106 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Dimorphic hemorrhoids (piles)',
-        'description': 'Hemorrhoids, also known as piles, are swollen veins in the lower rectum and anus. They can develop internally or externally and may cause discomfort, bleeding, or itching.',
-        'avoid_foods_and_drinks': 'Eat a high-fiber diet to prevent constipation. Avoid straining during bowel movements.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Physical examination or other tests may be performed.'
+        'doctor_name': 'Dr. Patel',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=110),  # Example: 110 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Heart attack',
-        'description': 'A heart attack, also known as a myocardial infarction, occurs when blood flow to a part of the heart is blocked for a long enough time that part of the heart muscle is damaged or dies.',
-        'avoid_foods_and_drinks': 'Eat a heart-healthy diet low in saturated fats, trans fats, cholesterol, and sodium. Avoid processed foods and excess salt.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests, electrocardiogram (ECG), or imaging studies may be performed.'
+        'doctor_name': 'Dr. Wang',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=114),  # Example: 114 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Varicose veins',
-        'description': 'Varicose veins are enlarged, swollen, and twisted veins, usually appearing blue or dark purple, that often occur on the legs and feet. They may cause aching pain and discomfort.',
-        'avoid_foods_and_drinks': 'Eat a healthy, balanced diet to maintain a healthy weight. Avoid prolonged standing or sitting.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Physical examination or imaging tests may be performed.'
+        'doctor_name': 'Dr. Nguyen',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=118),  # Example: 118 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Hypothyroidism',
-        'description': 'Hypothyroidism is a condition in which the thyroid gland does not produce enough thyroid hormone, leading to symptoms such as fatigue, weight gain, and cold intolerance.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but a balanced diet is important for overall health.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests to measure thyroid hormone levels may be performed.'
+        'doctor_name': 'Dr. Hernandez',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=122),  # Example: 122 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Hyperthyroidism',
-        'description': 'Hyperthyroidism is a condition in which the thyroid gland produces too much thyroid hormone, leading to symptoms such as weight loss, rapid heartbeat, and heat intolerance.',
-        'avoid_foods_and_drinks': 'Limit caffeine intake. Avoid stimulants such as energy drinks and certain medications.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests to measure thyroid hormone levels may be performed.'
+        'doctor_name': 'Dr. Garcia',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=126),  # Example: 126 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Hypoglycemia',
-        'description': 'Hypoglycemia, also known as low blood sugar, occurs when blood sugar (glucose) levels fall below normal levels, leading to symptoms such as shakiness, sweating, and confusion.',
-        'avoid_foods_and_drinks': 'Eat small, frequent meals containing complex carbohydrates and protein. Avoid sugary foods and drinks that can cause rapid blood sugar spikes.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Blood tests to measure blood sugar levels may be performed.'
+        'doctor_name': 'Dr. Gonzalez',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=130),  # Example: 130 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Osteoarthritis',
-        'description': 'Osteoarthritis is a degenerative joint disease characterized by the breakdown of joint cartilage and underlying bone, leading to pain, stiffness, and decreased range of motion.',
-        'avoid_foods_and_drinks': 'Maintain a healthy weight to reduce stress on the joints. Eat a balanced diet rich in fruits, vegetables, whole grains, and lean protein.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Physical examination, imaging tests, or joint fluid analysis may be performed.'
+        'doctor_name': 'Dr. Martinez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=134),  # Example: 134 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Arthritis',
-        'description': 'Arthritis is inflammation of one or more joints, causing pain, stiffness, and swelling. There are more than 100 different types of arthritis.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but maintaining a healthy weight and eating a balanced diet can help reduce symptoms.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Physical examination, imaging tests, or blood tests may be performed.'
+        'doctor_name': 'Dr. Johnson',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=138),  # Example: 138 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': '(Vertigo) Paroxysmal Positional Vertigo',
-        'description': 'Paroxysmal positional vertigo (BPPV) is a disorder of the inner ear characterized by brief episodes of dizziness and spinning sensations triggered by changes in head position.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but certain triggers such as caffeine or alcohol may exacerbate symptoms in some individuals.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Physical examination or diagnostic maneuvers such as the Dix-Hallpike test may be performed.'
+        'doctor_name': 'Dr. Lee',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=142),  # Example: 142 days from now
+        'appointment_length': 60  # Appointment length in minutes
     },
     {
-        'name': 'Acne',
-        'description': 'Acne is a common skin condition that occurs when hair follicles become clogged with oil and dead skin cells, leading to pimples, blackheads, and whiteheads.',
-        'avoid_foods_and_drinks': 'There is no strong evidence linking specific foods to acne, but some individuals may find that certain foods, such as dairy or high-glycemic index foods, exacerbate their acne.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Acne is typically diagnosed based on physical examination and medical history.'
+        'doctor_name': 'Dr. Patel',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=146),  # Example: 146 days from now
+        'appointment_length': 45  # Appointment length in minutes
     },
     {
-        'name': 'Urinary tract infection',
-        'description': 'A urinary tract infection (UTI) is an infection involving the kidneys, ureters, bladder, or urethra. UTIs are usually caused by bacteria and may cause pain, burning with urination, and frequent urination.',
-        'avoid_foods_and_drinks': 'Drink plenty of water to flush out bacteria. Avoid irritating foods and drinks such as caffeine, alcohol, and spicy foods.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Urine tests are performed to detect the presence of bacteria or white blood cells.'
+        'doctor_name': 'Dr. Hernandez',
+        'appointment_mood': 'Regular checkup',
+        'appointment_time': datetime.now() + timedelta(days=150),  # Example: 150 days from now
+        'appointment_length': 30  # Appointment length in minutes
     },
     {
-        'name': 'Psoriasis',
-        'description': 'Psoriasis is a chronic autoimmune condition characterized by patches of thick, red skin covered with silvery scales. It is not contagious.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid, but some individuals may find that certain foods, such as alcohol or processed foods, trigger flare-ups.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. Psoriasis is typically diagnosed based on physical examination and medical history.'
-    },
-    {
-        'name': 'Impetigo',
-        'description': 'Impetigo is a highly contagious skin infection caused by bacteria.',
-        'avoid_foods_and_drinks': 'There are no specific foods or drinks to avoid for impetigo treatment.',
-        'examination_preparation': 'No specific preparation is required for diagnosis. A sample may be taken from the infected area for examination.'
+        'doctor_name': 'Dr. Wang',
+        'appointment_mood': 'Follow-up',
+        'appointment_time': datetime.now() + timedelta(days=154),  # Example: 154 days from now
+        'appointment_length': 60  # Appointment length in minutes
     }
 ]
 
-
-# Insert diseases into the database
-for data in diseases_data:
-    disease = Disease.objects.create(
-        name=data['name'],
-        description=data['description'],
-        avoid_foods_and_drinks=data['avoid_foods_and_drinks'],
-        examination_preparation=data['examination_preparation']
+# Create appointments
+for data in appointments_data:
+    Appointment.objects.create(
+        doctor_name=data['doctor_name'],
+        appointment_mood=data['appointment_mood'],
+        appointment_time=data['appointment_time'],
+        appointment_length=data['appointment_length']
     )
-    print(f"{disease.name} inserted into the database.") 

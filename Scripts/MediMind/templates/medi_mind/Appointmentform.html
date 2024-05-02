@@ -16,13 +16,13 @@
         <h3> Now <br> __</h3>
         <p>Seize the Reins of Your Health Journey<br>Ensure Your Place on the Path to Healing</p>
     </div>
-  
-    <form id="appointmentForm" action="/book_appointment" method="POST">
+    <form action="" method="POST">
+        {% csrf_token %}
         <div class="form-group">
             <select name="doctor" id="doctor">
                 <option value="">Choose Your Doctor</option>
-                {% for doctor in doctors %}
-                <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                {% for Appointment in Appointments %}
+                <option value="{{ Appointment.doctor_name }}">{{ Appointment.doctor_name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -30,8 +30,8 @@
         <div class="form-group">
             <select name="appointmentMode" id="appointmentMode">
                 <option value="">Appointment Mode</option>
-                {% for mode in appointment_modes %}
-                <option value="{{ mode }}">{{ mode }}</option>
+                {% for Appointment in Appointments %}
+                <option value="{{ Appointment.appointment_mood }}">{{ Appointment.appointment_mood }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -39,8 +39,8 @@
         <div class="form-group">
             <select name="date" id="date">
                 <option value="">     Select Date & Time    </option>
-                {% for date in date %}
-                <option value="{{ date }}">{{ date }}</option>
+                {% for Appointment in Appointments %}
+                <option value="{{ Appointment.appointment_time }}">{{ Appointment.appointment_time }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -48,13 +48,13 @@
         <div class="form-group">
             <select name="appointmentLength" id="appointmentLength">
                 <option value="">Appointment Length</option>
-                {% for length in appointment_lengths %}
-                <option value="{{ length }}">{{ length }} minutes</option>
+                {% for Appointment in Appointments %}
+                <option value="{{ Appointment.appointment_length }}">{{ Appointment.appointment_length }} minutes</option>
                 {% endfor %}
             </select>
         </div>
-    
         <button type="submit" class="btn">Proceed</button>
+        
     </form>    
 </div>
 </body>
