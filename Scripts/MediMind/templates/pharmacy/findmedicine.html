@@ -1,0 +1,30 @@
+{% extends "pharmacy/pharmacybase.html" %}
+{% load static %}
+{% block title %}Pharmacy{% endblock %}
+{% block more-style %}
+
+{% endblock %}
+{% block content %}
+<div class="body">
+        <div class="row">
+            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <h2>Find Medicine</h2>
+                <form action="{% url 'findmedicine' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Type Medicine Name</label>
+                        <div class="col-10">
+                            <input name='medicine' class="form-control" type="text" id="example-email-input">
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <center><button type="submit" class="btn btn-success float-right">Find Medicine</button></center>
+                    </div>
+                    {{error}}
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

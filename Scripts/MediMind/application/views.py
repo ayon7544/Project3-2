@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from . import DiseaseClassifier
 from .models import Symptom
 from django.contrib.auth.decorators import login_required
+from .forms import *
+from .models import *
 
 
 def homepage(request):
@@ -47,3 +49,30 @@ def resource(request):
 @login_required  
 def seminar(request):
     return render(request, 'medi_mind/seminar.html')
+
+def homemedicine(request):
+        return render(request, 'pharmacy/pharmacyhome.html')
+    
+@login_required  
+def findmedicine(request):
+    context = {}
+    if request.method == 'POST':
+        medicine_r = request.POST.get('medicine')
+        medicine_list = Medicine.objects.filter(
+                medicine=medicine_r)
+        if medicine_list:
+            return render(request, 'pharmacy/list.html', locals())
+        else:
+            context["error"] = "Sorry this one is not available"
+            return render(request, 'pharmacy/findmedicine.html', context)
+    else:
+        return render(request, 'pharmacy/findmedicine.html')
+
+
+
+def bookings(request):
+        return render(request, 'pharmacy/bookings.html')
+def payment(request):
+    return render(request, 'pharmacy/payment.html')
+def Thankyou(request):
+    return render(request, 'pharmacy/Thankyou.html')

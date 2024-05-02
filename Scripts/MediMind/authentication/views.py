@@ -2,6 +2,7 @@ import threading
 # from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # #** For some reason this is not working for me!!
 # from validate_email import validate_email
@@ -208,7 +209,7 @@ def activate_user(request, uidb64, token):
     return render(request, "authentication/activate-failed.html",
                   {"user": user})
 
-
+@login_required 
 def delete_users(request):
     if request.method == "POST":
         # context = {"data": request.POST}

@@ -1,9 +1,19 @@
-{% extends 'medi_mind/basepage.html' %}
+<!DOCTYPE html>
 {% load static %}
-{% block title %}Disease{% endblock %}
-
-{% block content %}
-
-{{disease}}
-
-{% endblock %}
+<html>
+<head>
+  <title>Medical Advertisement</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'predictedDisease.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Probable Diagnosis: {{ disease }}</h1>
+    <h2>Description:</h2> 
+    <p>text describing symptoms</P>
+    <h2>Avoid Food and Drink</h2> 
+    <p>text describing symptoms</P>
+    <button class="medical-button"> >>Seek Medical Attention Immediately ></button>
+    <a href="{% url 'appointmentform' %}" class="button">Book Appointment</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("img/homepagebackground.png");
+    background-size: cover;
+}
+
+.body {
+    text-align: center;
+}
+
+h2, p {
+    color: white;
+    font-size: 50px;
+}
+
+.button {
+    background-color: #80a2c6;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
