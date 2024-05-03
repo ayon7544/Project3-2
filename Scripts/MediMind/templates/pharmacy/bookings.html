@@ -1,0 +1,16 @@
+{% extends 'pharmacy/pharmacybase.html' %}
+{% block content %}
+<div class="centered-content">
+    <h2>Booking Confirmation:</h2>
+    <form action="{% url 'homepage' %}" method="post">
+        {% csrf_token %}
+        <h2>Your booking has been confirmed!</h2>
+        <h2>Thank you!</h2>
+        <h3>Click here to see Bill details</h3>
+        
+        <a href="{% url 'payment' %}" class="btn btn-success">
+            Bill details
+        </a>
+        
+
+{% endblock %}

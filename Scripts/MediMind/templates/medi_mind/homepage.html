@@ -1,29 +1,29 @@
 {% extends 'medi_mind/basepage.html' %}
-{% load static%}
+{% load static %}
 {% block title %}Home{% endblock %}
-{% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">
-<section>
+{% block content %}
+  <section>
     <h1>Your Health is</h1>
-    <h3>OUR PRIYORITY</h3>
-    <a href="#" class="btnone">Book an Appoinment<span class="arrow">&#9658;</span></a>
+    <h3>OUR PRIORITY</h3>
+    <a href="{% url 'appointmentform' %}" class="btnone">Book an Appointment<span class="arrow">&#9658;</span></a>
     <a href="{% url 'diseaseform' %}" class="btntwo">Detect Disease <span class="arrow">&#9658;</span></a>
-</section>
-<add>
+  </section>
+
+  <add>
     <ul class="banner-buttons">
         <li>
-            <a href="#">
-                <i class="fas fa-syringe"></i>
+            <a href="findmedicine">
+                <div class="homeicon"><img src="{% static 'img/medicine.png' %}"></div>
                 <div class="button-text">
                     <h2>Medicine/Vaccine</h2>
-                    <h3>Scan the prescription <br>and find the medicines, <br>in a reasonable price.</h3>
+                    <h3>Scan the prescription <br>and find the medicines,<br>in a reasonable price.</h3>
                 </div>
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class="fas fa-notes-medical"></i>
+            <a href="resource">
+                <div class="homeicon"><img src="{% static 'img/education.png' %}"></div>
                 <div class="button-text">
                     <h2>Education & Resources</h2>
                     <h3>Need help in health <br> education and resources? We got<br> the best sources for you</h3>
@@ -31,8 +31,8 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class="fas fa-user-md"></i>
+            <a href="seminar">
+                <div class="homeicon"><img src="{% static 'img/seminar.png' %}"></div>
                 <div class="button-text">
                     <h2>Seminar/Webinar</h2>
                     <h3>Join the seminar with the<br>top doctor for a better<br>healthy life</h3>
@@ -41,9 +41,169 @@
         </li>
     </ul>
 </add>
-{% comment %} 
+
+  <!-- Service Section -->
+  <section id="services">
+   <div class="services container">
+    <div class="service-top">
+      <h1 class="section-title">Services</h1>
+    </div>
+    <div class="service-bottom">
+        <a href="#" class="service-item">
+            <div class="icon"><img src="{% static 'img/health-risk-icon.png' %}" alt="Health Risk Assessment Icon"></div>
+            <h2>Health Risk Assessment</h2>
+        </a>
+        <a href="#" class="service-item">
+            <div class="icon"><img src="{% static 'img/medical-consultations-icon.png' %}" alt="Medical Consultations Icon"></div>
+            <h2>Medical Consultations</h2>
+        </a>
+        <a href="#" class="service-item">
+            <div class="icon"><img src="{% static 'img/mental-health-support-icon.png' %}" alt="Mental Health Support Icon"></div>
+            <h2>Mental Health Support</h2>
+        </a>
+        <a href="#" class="service-item">
+            <div class="icon"><img src="{% static 'img/appointment-scheduling-icon.png' %}" alt="Appointment Scheduling Icon"></div>
+            <h2>Appointment Scheduling</h2>
+        </a>
+        <a href="#" class="service-item">
+            <div class="icon"><img src="{% static 'img/fitness-nutrition-icon.png' %}" alt="Fitness & Nutrition Planning Icon"></div>
+            <h2>Fitness & Nutrition</h2>
+        </a>
+        <a href="#" class="service-item">
+            <div class="icon"><img src="{% static 'img/pharmacy-icon.png' %}" alt="Pharmacy Icon"></div>
+            <h2>Pharmacy</h2>
+        </a>
+    </div>
+  </div>
+ </section>
+  <!-- End Service Section -->
+  <!-- doctor Section -->
+<section id="doctors">
+        <div class="doctor-content">
+            <h1>Our Doctors</h1>
+            <p>Get a consultation from the best doctors of worldwide.</p>
+        </div>
+  <div class="wrapper">
+      <i id="left" class="fa-solid fa-angle-left"></i>
+      <ul class="carousel">
+        <li class="card">
+          <div class="img"><img src="{% static 'img/doctor1.png'%}" alt="img" draggable="false"></div>
+          <h2>Psychiatrists</h2>
+          <span>Dr. Anjina</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="{% static 'img/doctor2.png'%}" alt="img" draggable="false"></div>
+          <h2>Neurologist</h2>
+          <span>Dr. Ayon</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="{% static 'img/doctor3.png'%}" alt="img" draggable="false"></div>
+          <h2>Dentists</h2>
+          <span>Dr. Mahadi</span>
+
+        </li>
+        <li class="card">
+          <div class="img"><img src="{% static 'img/doctor4.png'%}" alt="img" draggable="false"></div>
+          <h2>Orthopedic Surgeons</h2>
+          <span>Dr. Raita</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="{% static 'img/doctor3.png'%}" alt="img" draggable="false"></div>
+          <h2>Cardiologists</h2>
+          <span>Dr. Bijoy</span>
+        </li>
+        <li class="card">
+          <div class="img"><img src="{% static 'img/doctor2.png'%}" alt="img" draggable="false"></div>
+          <h2>Allergists</h2>
+          <span> Dr. Tashrif </span>
+        </li>
+      </ul>
+      <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+    <div id="search-results"></div>
+  <script src="{% static 'home.js' %}"></script>
+</section>
+  <!-- doctor Section -->
+  <!-- About Section -->
+  <section id="about">
+    <div class="about container">
+        <div class="about-content">
+            <h1>About Us</h1>
+            <div class="about-item">
+                <h2>Welcome</h2>
+                <p>We warmly welcome you to MediMind, where innovation meets healthcare to transform lives with the power of AI. Our journey is fueled by a passion for making healthcare accessible, understandable, and personalized for everyone, everywhere.</p>
+            </div>
+            <div class="about-item">
+                <h2>Our Mission</h2>
+                <p>At MediMind, our mission is to harness the power of artificial intelligence to revolutionize healthcare. We aim to empower individuals with the tools and insights needed to make informed health decisions, fostering a healthier, more informed world.</p>
+            </div>
+            <div class="about-item">
+                <h2>Our Story</h2>
+                <p>MediMind was born from a simple yet profound realization: the potential of AI in healthcare was vast, yet untapped. Founded in 2024 by a group of 6 people. We embarked on a journey to democratize healthcare. Our path has been marked by groundbreaking innovations—from launching our first AI-driven symptom checker to partnering with leading medical institutions. Each milestone reflects our commitment to transforming healthcare for the better.</p>
+            </div>
+            <div class="about-item">
+                <h2>How We Use AI in Healthcare</h2>
+                <p>Our approach to integrating AI in healthcare is centered around personalization and precision. We leverage cutting-edge AI algorithms to analyze health data, providing users with personalized health assessments, symptom analysis, and lifestyle recommendations. This technology enables us to offer tailored health advice, predict health risks, and connect individuals with the right healthcare professionals, all with the aim of making healthcare more proactive and preventive.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- End About Section -->
+
+  <!-- Contact Section -->
+  <section id = "contact" class = "contact py">
+            <div class = "container grid">
+                <div class = "contact-right text-white text-center bg-blue">
+                    <div class = "contact-head">
+                        <h3 class = "lead">Contact Us</h3>
+                    </div>
+        
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="3bb0346c-53b6-45ba-ae7c-e526f6f463d8">
+                        <div class = "form-element">
+                            <input type = "text" class = "form-control" placeholder="Your name">
+                        </div>
+                        <div class = "form-element">
+                            <input type = "email" class = "form-control" placeholder="Your email">
+                        </div>
+                        <div class = "form-element">
+                            <textarea rows = "5" placeholder="Your Message" class = "form-control"></textarea>
+                        </div>
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                        <button type = "submit" class = "btn btn-white btn-submit">
+                           Submit Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+  <!-- End Contact Section -->
+  <!-- Footer -->
+  <section id="footer">
+    <div class = "footer-item">
+        <h4>24/7 hours</h4>
+        <h5> Emergency Contact</h5>
+        <ul class = "appointment-info">
+            <li>
+                <i class = "fas fa-envelope"></i>
+                <span>medimind@gmail.com</span>
+            </li>
+            <li>
+                <i class = "fas fa-phone"></i>
+                <span>+8801*********</span>
+            </li>
+        </ul>
+    </div>
+    <div class="footer container">
+      <h2>Your Health Solution</h2>
+      <p>Copyright © 2024 MediMind. All rights reserved</p>
+    </div>
+  </section>
+
+{% comment %}
 <div id="loginPopup" class="login-popup" style="display: none;">
     {% include 'loginpage.html' %}
-</div> 
+</div>
 {% endcomment %}
 {% endblock %}

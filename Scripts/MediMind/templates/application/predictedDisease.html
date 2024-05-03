@@ -1,2 +1,21 @@
-
-{{disease}}
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>Medical Advertisement</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'predictedDisease.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Probable Diagnosis: {{ disease }}</h1>
+    <h2>Description:</h2> 
+    <p>{{description}}</P>
+    <h2>Avoid Food and Drink</h2> 
+    <p>{{avoid}}</P>
+    <h2>Examination Preparation</h2> 
+    <p>{{examination_preparation}}</P>
+    <button class="medical-button"> >>Seek Medical Attention Immediately ></button>
+    <a href="{% url 'appointmentform' %}" class="button">Book Appointment</a>
+  </div>
+</body>
+</html>

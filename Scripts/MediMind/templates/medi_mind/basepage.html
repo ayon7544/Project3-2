@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'basepage.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">
 </head>
 <body>
-<header>
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="logo">
+            <img src="{% static 'img/medimind_logo.png' %}" alt="MediMind Logo">
+          </a>
+        </div>
 
-<nav>
-    <div class="logo">
-        <img src="{% static 'img/medimind_logo.png' %}" alt="MediMind Logo">
-        
+        <div class="nav-list">
+          <div class="bar">
+            <div class="bar"></div>
+          </div>
+          <ul>
+            {% comment %} <li> <a href="{% url 'delete_users' %}">Admin</a> </li> {% endcomment %}
+            <li><a href="#">Home</a></li>
+            <li><a href="#services" data-after="Service">Services</a></li>
+            <li><a href="#doctors" data-after="Doctor">Our Doctors</a></li>
+            <li><a href="#about" data-after="About">About</a></li>
+            <li><a href="#contact" data-after="Contact">Contact</a></li>
+            <li>
+                 {% if request.user.is_authenticated %}
+                 {% comment %} <a class="login-link">
+                     {{request.user.username}}
+                        <form class="login-link" method="post" action="{% url 'logout_user' %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Sign out" class="login-link">
+                        </form>
+                 </a> {% endcomment %}
+                 <a href="{% url 'logout_user' %}" class="login-link">{{request.user.username}}</a>
+                 {% else %}
+                     <a href="{% url 'login' %}" class="login-link">Login</a>
+                 {% endif %}
+                 {% comment %} {% if user.is_authenticated %}
+                     <a href="#" class="login-link">Profile</a>
+                 {% else %}
+                     <a href="{% url 'login' %}" class="login-link">LogIN</a>
+                 {% endif %} {% endcomment %}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="menu">
-        <a href="{% url 'delete_users' %}">Admin</a>
-    </div>
-    <div class="menu">
-        <a href="{% url 'homepage' %}">Home</a>
-        <a href="#">Services</a>
-        <a href="#">About</a>
-        <a href="#">Our Doctors</a>
-        <a href="#">Appointment</a>
-        <a href="#">Contact</a>
-        
+  </section>
 
-        {% if request.user.is_authenticated %}
-        {% comment %} <a class="login-link">
-            {{request.user.username}}
-                <form class="login-link" method="post" action="{% url 'logout_user' %}">
-                    {% csrf_token %}
-                    <input type="submit" value="Sign out" class="login-link">
-                </form>
-        </a> {% endcomment %}
-        <a href="{% url 'logout_user' %}" class="login-link">{{request.user.username}}</a>
-        {% else %}
-            <a href="{% url 'login' %}" class="login-link">Login</a>
-        {% endif %}
-
-
-        {% comment %} {% if user.is_authenticated %}
-            <a href="#" class="login-link">Profile</a>
-        {% else %}
-            <a href="{% url 'login' %}" class="login-link">LogIN</a>
-        {% endif %} {% endcomment %}
-    </div>
-</nav>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-</header>
+  <!-- Content block -->
+  {% block content %}
+  {% endblock %}
 </body>
 </html>
